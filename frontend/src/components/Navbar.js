@@ -17,6 +17,7 @@ import {
   FiMenu,
   FiX,
   FiChevronDown,
+  FiPlus,
 } from "react-icons/fi";
 import AvatarPlaceholder from "./AvatarPlaceholder";
 import "./Navbar.css";
