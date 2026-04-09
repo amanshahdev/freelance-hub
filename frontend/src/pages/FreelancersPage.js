@@ -31,20 +31,23 @@ export default function FreelancersPage() {
   const [skills, setSkills] = useState("");
   const [minRate, setMinRate] = useState("");
   const [maxRate, setMaxRate] = useState("");
-            style={{ justifyContent: "center", boxShadow: "var(--shadow-amber)" }}
+  const [location, setLocation] = useState("");
   const [sort, setSort] = useState("");
   const [page, setPage] = useState(1);
 
-  const buildQueryParams = (pageValue) => {
-    const params = { page: pageValue, limit: 12 };
-    if (search) params.search = search;
-    if (skills) params.skills = skills;
-    if (minRate) params.minRate = minRate;
-    if (maxRate) params.maxRate = maxRate;
-    if (location) params.location = location;
-    if (sort) params.sort = sort;
-    return params;
-  };
+  const buildQueryParams = useCallback(
+    (pageValue) => {
+      const params = { page: pageValue, limit: 12 };
+      if (search) params.search = search;
+      if (skills) params.skills = skills;
+      if (minRate) params.minRate = minRate;
+      if (maxRate) params.maxRate = maxRate;
+      if (location) params.location = location;
+      if (sort) params.sort = sort;
+      return params;
+    },
+    [search, skills, minRate, maxRate, location, sort],
+  );
 
   const fetchFreelancers = useCallback(async (params) => {
     setLoading(true);
@@ -77,6 +80,7 @@ export default function FreelancersPage() {
     location,
     sort,
     page,
+    buildQueryParams,
     fetchFreelancers,
   ]);
 
