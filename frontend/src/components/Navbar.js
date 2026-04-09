@@ -17,7 +17,6 @@ import {
   FiMenu,
   FiX,
   FiChevronDown,
-  FiPlus,
 } from "react-icons/fi";
 import AvatarPlaceholder from "./AvatarPlaceholder";
 import "./Navbar.css";
@@ -108,14 +107,9 @@ export default function Navbar() {
           {user ? (
             <>
               {user.role === "client" && (
-                <>
-                  <Link to="/freelancers" className="btn btn-secondary btn-sm">
-                    Hire Talent
-                  </Link>
-                  <Link to="/jobs/create" className="btn btn-primary btn-sm">
-                    <FiPlus size={14} /> Post Job
-                  </Link>
-                </>
+                <Link to="/jobs/create" className="btn btn-primary btn-sm">
+                  <FiBriefcase size={14} /> Post Job
+                </Link>
               )}
               <div className="user-dropdown" ref={dropRef}>
                 <button
@@ -251,23 +245,14 @@ export default function Navbar() {
                 Profile
               </NavLink>
               {user.role === "client" && (
-                <>
-                  <NavLink
-                    to="/freelancers"
-                    className="mobile-link"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Hire Talent
-                  </NavLink>
-                  <Link
-                    to="/jobs/create"
-                    className="btn btn-primary btn-sm"
-                    style={{ margin: "8px 16px" }}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <FiPlus size={14} /> Post Job
-                  </Link>
-                </>
+                <Link
+                  to="/jobs/create"
+                  className="btn btn-primary btn-sm"
+                  style={{ margin: "8px 16px" }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <FiPlus size={14} /> Post Job
+                </Link>
               )}
               <button className="mobile-link danger" onClick={handleLogout}>
                 Sign Out

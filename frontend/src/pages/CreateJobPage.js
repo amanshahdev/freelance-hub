@@ -47,6 +47,7 @@ export default function CreateJobPage() {
   const searchParams = new URLSearchParams(location.search);
   const hireFreelancerName = searchParams.get("freelancerName");
   const hireFreelancerId = searchParams.get("freelancerId");
+  const hireFreelancerEmail = searchParams.get("freelancerEmail");
   const [form, setForm] = useState(() => ({
     ...INITIAL,
     description: hireFreelancerName
@@ -129,6 +130,37 @@ export default function CreateJobPage() {
       };
       const res = await jobAPI.create(payload);
       toast.success("Job posted successfully! 🎉");
+
+      if (hireFreelancerEmail) {
+        const subject = encodeURIComponent(
+          `Hire request: ${form.title.trim()}`,
+        );
+        const body = encodeURIComponent(
+          [
+            `Hi ${hireFreelancerName || "there"},`,
+            "",
+            "I found your profile on FreelanceHub and would like to discuss this project.",
+            "",
+            `Job title: ${form.title.trim()}`,
+            `Category: ${form.category}`,
+            `Budget: $${form.budgetMin} - $${form.budgetMax} (${form.budgetType})`,
+            `Location: ${form.location}`,
+            `Experience level: ${form.experienceLevel}`,
+            `Skills: ${form.skills.length > 0 ? form.skills.join(", ") : "Not specified"}`,
+            "",
+            "Project details:",
+            form.description.trim(),
+            "",
+            `FreelanceHub job link: ${window.location.origin}/jobs/${res.data.job._id}`,
+            "",
+            "Please reply if you're available.",
+          ].join("\n"),
+        );
+
+        window.location.href = `mailto:${hireFreelancerEmail}?subject=${subject}&body=${body}`;
+        return;
+      }
+
       navigate(`/jobs/${res.data.job._id}`);
     } catch (err) {
       toast.error(getErrorMessage(err));

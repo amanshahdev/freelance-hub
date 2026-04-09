@@ -19,6 +19,7 @@ import {
   FiMapPin,
   FiDollarSign,
   FiExternalLink,
+  FiMail,
 } from "react-icons/fi";
 
 export default function FreelancersPage() {
@@ -370,12 +371,32 @@ function FreelancerCard({ fl }) {
         <FiExternalLink size={13} /> View Profile
       </Link>
       <Link
-        to={`/jobs/create?freelancerId=${encodeURIComponent(fl._id)}&freelancerName=${encodeURIComponent(fl.name)}`}
+        to={`/jobs/create?freelancerId=${encodeURIComponent(fl._id)}&freelancerName=${encodeURIComponent(fl.name)}&freelancerEmail=${encodeURIComponent(fl.email || "")}`}
         className="btn btn-primary btn-sm"
         style={{ justifyContent: "center" }}
       >
         Hire Talent
       </Link>
+      {fl.email && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            fontSize: 13,
+            color: "var(--text-muted)",
+            marginTop: -4,
+          }}
+        >
+          <FiMail size={12} />
+          <a
+            href={`mailto:${fl.email}`}
+            style={{ color: "var(--text-secondary)", textDecoration: "none" }}
+          >
+            {fl.email}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

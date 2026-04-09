@@ -14,6 +14,7 @@ import {
   FiMapPin,
   FiDollarSign,
   FiEdit,
+  FiMail,
   FiExternalLink,
   FiBriefcase,
   FiSend,
@@ -132,12 +133,21 @@ export default function ProfilePage() {
               )}
               {canHire && (
                 <Link
-                  to={`/jobs/create?freelancerId=${encodeURIComponent(profile._id)}&freelancerName=${encodeURIComponent(profile.name)}`}
+                  to={`/jobs/create?freelancerId=${encodeURIComponent(profile._id)}&freelancerName=${encodeURIComponent(profile.name)}&freelancerEmail=${encodeURIComponent(profile.email || "")}`}
                   className="btn btn-primary btn-sm"
                   style={{ marginTop: 16, justifyContent: "center" }}
                 >
                   Hire Talent
                 </Link>
+              )}
+              {profile.email && (
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="btn btn-secondary btn-sm"
+                  style={{ marginTop: 10, justifyContent: "center" }}
+                >
+                  <FiMail size={13} /> Email Talent
+                </a>
               )}
               {isOwnProfile && (
                 <Link
