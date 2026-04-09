@@ -69,9 +69,6 @@ export default function LandingPage() {
             <Link to="/jobs" className="btn btn-primary btn-lg">
               Browse Jobs <FiArrowRight size={18} />
             </Link>
-            <Link to="/freelancers" className="btn btn-secondary btn-lg">
-              Hire Talent
-            </Link>
             <Link to="/signup" className="btn btn-secondary btn-lg">
               Post a Job
             </Link>
@@ -201,9 +198,6 @@ export default function LandingPage() {
               flexWrap: "wrap",
             }}
           >
-            <Link to="/freelancers" className="btn btn-secondary btn-lg">
-              Hire Talent
-            </Link>
             <Link to="/signup" className="btn btn-primary btn-lg">
               Create Free Account <FiArrowRight size={18} />
             </Link>

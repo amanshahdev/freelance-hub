@@ -31,7 +31,7 @@ export default function FreelancersPage() {
   const [skills, setSkills] = useState("");
   const [minRate, setMinRate] = useState("");
   const [maxRate, setMaxRate] = useState("");
-  const [location, setLocation] = useState("");
+            style={{ justifyContent: "center", boxShadow: "var(--shadow-amber)" }}
   const [sort, setSort] = useState("");
   const [page, setPage] = useState(1);
 
@@ -369,13 +369,6 @@ function FreelancerCard({ fl }) {
         style={{ justifyContent: "center", marginTop: "auto" }}
       >
         <FiExternalLink size={13} /> View Profile
-      </Link>
-      <Link
-        to={`/jobs/create?freelancerId=${encodeURIComponent(fl._id)}&freelancerName=${encodeURIComponent(fl.name)}&freelancerEmail=${encodeURIComponent(fl.email || "")}`}
-        className="btn btn-primary btn-sm"
-        style={{ justifyContent: "center" }}
-      >
-        Hire Talent
       </Link>
       {fl.email && (
         <div

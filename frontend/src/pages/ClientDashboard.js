@@ -120,11 +120,6 @@ export default function ClientDashboard() {
         >
           {[
             {
-              label: "Hire Talent",
-              desc: "Browse freelancers to start a new hire",
-              to: "/freelancers",
-            },
-            {
               label: "Post a Job",
               desc: "Find the talent you need",
               to: "/jobs/create",
